@@ -3,15 +3,25 @@
   <app-status-filter (selectedStatus)="handleChangeStatus($event)"></app-status-filter>
 </div>
 
+
+@if (selectedCharacter() != null) {
+  <app-character-detail [character]="selectedCharacter()" (back)="clearSelectedCharacter()">
+  </app-character-detail>
+
+} @else {
 <div class="characters-container">
   @for (character of characters(); track character.id) {
-  <app-character-card [character]="character"></app-character-card>
+  <app-character-card 
+    [character]="character"
+    (characterSelected)="handleCharacterSelection($event)">
+  </app-character-card>
 
   } @empty {
   <p class="no-results">No hay resultados</p>
   }
 
 </div>
+}
 
 @if(characters().length > 0){
 <div class="pagination">

@@ -3,10 +3,11 @@ import { CharacterService } from '../../services/character.service';
 import { CharacterCardComponent } from '../character-card/character-card.component';
 import { SearchInputComponent } from '../search-input/search-input.component';
 import { StatusFilterComponent } from '../status-filter/status-filter.component';
+import { CharacterDetailComponent } from "../character-detail/character-detail.component";
 
 @Component({
   selector: 'app-character-list',
-  imports: [CharacterCardComponent, SearchInputComponent, StatusFilterComponent],
+  imports: [CharacterCardComponent, SearchInputComponent, StatusFilterComponent, CharacterDetailComponent],
   templateUrl: './character-list.component.html',
   styleUrls: ['./character-list.component.css'],
 })
@@ -25,6 +26,8 @@ export class CharacterListComponent implements OnInit {
   protected currentPage = signal(1);
   protected totalPages = signal(1);
   protected totalCharacters = signal(0);
+
+  protected selectedCharacter = signal<any | null>(null);
 
 
   ngOnInit() {
@@ -73,15 +76,24 @@ export class CharacterListComponent implements OnInit {
 
     this.currentPage.update((page) => page + 1);
     this.loadCharacters();
-    
+
   }
 
-   // Retrocede a la página anterior si existe
+  // Retrocede a la página anterior si existe
   previousPage() {
     if (this.currentPage() <= 1) return;
 
     this.currentPage.update((page) => page - 1);
     this.loadCharacters();
-    
+
+  }
+
+  handleCharacterSelection(character: any) {
+    this.selectedCharacter.set(character);
+  }
+
+
+  clearSelectedCharacter() {
+    this.selectedCharacter.set(null);
   }
 }

@@ -7,10 +7,8 @@
   overflow: hidden;
   transition: 0.25s;
   box-shadow: 0 0 10px rgba(0, 255, 204, 0.3);
-  
-  text-decoration: none;
-  color: inherit;
-  display: block;
+  cursor: pointer;
+
 }
 
 .character-card:hover {
@@ -18,6 +16,7 @@
   box-shadow:
     0 0 15px #00ffcc,
     0 0 30px rgba(124, 255, 0, 0.6);
+
 }
 
 .character-card img {
@@ -35,6 +34,7 @@
   margin-bottom: 14px;
   font-size: 1.5rem;
   margin-left: 12px;
+  
 }
 
 .character-card p {
