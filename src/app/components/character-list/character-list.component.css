@@ -1,0 +1,77 @@
+/* Filtros */
+.filters {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+/* Contenedor de personajes */
+.characters-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 320px));
+  justify-content: center;
+  gap: 24px;
+}
+
+/* Paginación */
+.pagination {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Botones */
+button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+
+  background-color: #00ffcc;
+  color: #111;
+
+  font-weight: bold;
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+button:hover:not(:disabled) {
+  transform: scale(1.05);
+
+  box-shadow:
+    0 0 10px #00ffcc,
+    0 0 20px #00ffcc;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Texto sin resultados */
+.no-results {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #7cff00;
+}
+
+
+.total-characters {
+  width: fit-content;
+  margin: 20px auto 0;
+  padding: 10px 18px;
+  border-radius: 12px;
+  background-color: rgba(0, 0, 0, 0.4);
+  border: 1px solid #00ffcc;
+  color: #7cff00;
+  font-weight: bold;
+  text-shadow:
+    0 0 8px rgba(124, 255, 0, 0.7);
+  box-shadow:
+    0 0 10px rgba(0, 255, 204, 0.3);
+
+}

@@ -1,0 +1,33 @@
+<div class="filters">
+  <app-search-input (search)="handleSearch($event)"></app-search-input>
+  <app-status-filter (selectedStatus)="handleChangeStatus($event)"></app-status-filter>
+</div>
+
+<div class="characters-container">
+  @for (character of characters(); track character.id) {
+  <app-character-card [character]="character"></app-character-card>
+
+  } @empty {
+  <p class="no-results">No hay resultados</p>
+  }
+
+</div>
+
+@if(characters().length > 0){
+<div class="pagination">
+  <button type="button" (click)="previousPage()" [disabled]="currentPage() <=1">
+    Anterior
+  </button>
+
+  <span>Página {{ currentPage() }} de {{ totalPages() }}</span>
+
+  <button type="button" (click)="nextPage()" [disabled]="currentPage() >= totalPages()">
+    Siguiente
+  </button>
+</div>
+
+<p class="total-characters">
+  Total personajes: {{ totalCharacters() }}
+</p>
+
+}
