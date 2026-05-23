@@ -1,9 +1,70 @@
+/* MODO CLARO */
+:root {
+   --background-color:
+    radial-gradient(circle at top, #dff7e3 0%, #f5f7fa 40%);
+
+  --card-background: #ffffff;
+  --card-background-secondary: #eef2f7;
+  --input-background: #ffffff;
+  --info-background: rgba(0, 0, 0, 0.04);
+
+  --text-color: #111827;
+  --text-secondary: #374151;
+  --text-muted: #4b5563;
+  --button-text-color: #ffffff;
+
+  --primary-color: #16a34a;
+  --secondary-color: #0891b2;
+  --title-color: #15803d;
+
+  --border-primary: #06b6d4;
+  --border-secondary: #22c55e;
+
+  --title-shadow: rgba(21, 128, 61, 0.15);
+  --shadow-primary: rgba(6, 182, 212, 0.15);
+  --shadow-secondary: rgba(34, 197, 94, 0.15);
+  --glow-secondary: rgba(34, 197, 94, 0.35);
+}
+
+
+/* MODO OSCURO */
+.dark-theme {
+  --background-color:
+    radial-gradient(circle at top, #2d5a27 0%, #121212 40%);
+
+  --card-background: #202020;
+  --card-background-secondary: #2b2b2b;
+  --input-background: #1f1f1f;
+  --info-background: rgba(255,255,255,0.04);
+
+  --text-color: #ffffff;
+  --text-secondary: #dddddd;
+  --text-muted: #e5e5e5;
+  --button-text-color: #111;
+
+  --primary-color: #7cff00;
+  --secondary-color: #00ffcc; 
+  --title-color: #7cff00;
+
+  --border-primary: #00ffcc;
+  --border-secondary: #7cff00;
+
+  --shadow-primary: rgba(0, 255, 204, 0.3);
+  --shadow-secondary: rgba(124, 255, 0, 0.6);
+  --glow-secondary: rgba(124, 255, 0, 0.7);
+  --title-shadow: rgba(124, 255, 0, 0.7);
+
+}
+
 body {
   margin: 0;
-  background: radial-gradient(circle at top, #2d5a27 0%, #121212 40%);
+  background: var(--background-color);
   font-family: Arial, Helvetica, sans-serif;
+  color: var(--text-color);
+  transition: background 0.3s ease, color 0.3s ease;
   
 }
+
 
 
 

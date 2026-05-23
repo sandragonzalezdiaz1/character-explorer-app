@@ -1,17 +1,30 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
-
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { CharacterDetailComponent } from './character-detail.component';
+import { ActivatedRoute } from '@angular/router';
+import { provideRouter } from '@angular/router';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 describe('CharacterDetailComponent', () => {
   let component: CharacterDetailComponent;
   let fixture: ComponentFixture<CharacterDetailComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ CharacterDetailComponent ]
+      imports: [ CharacterDetailComponent ],
+      providers: [ provideRouter([]), provideHttpClientTesting(),
+      {
+        provide: ActivatedRoute,
+        useValue: {
+          snapshot: {
+            paramMap: {
+              get: () => '1'
+            }
+          }
+        }
+      }
+    
+    ]
     })
     .compileComponents();
   }));

@@ -1,5 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Subject, debounceTime } from 'rxjs';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { Subject, debounceTime, distinctUntilChanged } from 'rxjs';
 
 
 @Component({
@@ -17,7 +17,10 @@ export class SearchInputComponent {
   constructor() {
 
     this.searchSubject
-      .pipe(debounceTime(400))
+      .pipe(
+          debounceTime(400),
+          distinctUntilChanged() 
+      )
       .subscribe((value) => {
         this.search.emit(value);
       });
@@ -31,7 +34,5 @@ export class SearchInputComponent {
 
   }
 
-
-  
 
 }

@@ -1,6 +1,8 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpParams } from '@angular/common/http';
+import { Character } from '../interfaces/character';
+import { CharacterApiResponse } from '../interfaces/character-api-response';
 
 @Injectable({
   providedIn: 'root',
@@ -26,13 +28,13 @@ export class CharacterService {
       params = params.set('status', status);
     }
 
-    return this.http.get<any>(this.apiUrl, { params });
+    return this.http.get<CharacterApiResponse>(this.apiUrl, { params });
 
   }
 
   // Obtiene el personaje a través de su id
   getCharacterById(id: string) {
-    return this.http.get<any>(`${this.apiUrl}/${id}`);
+    return this.http.get<Character>(`${this.apiUrl}/${id}`);
   }
 
 

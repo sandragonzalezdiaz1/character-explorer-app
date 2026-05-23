@@ -1,31 +1,42 @@
-<section class="character-detail">
-  <img [src]="character.image" [alt]="character.name">
-
-  <div class="character-info">
-    <h1>{{ character.name }}</h1>
-    <p>
-      <strong>Estado:</strong>
-      {{ character.status  | statusTranslate }}
-    </p>
-    <p>
-      <strong>Género:</strong>
-      {{ character.gender }}
-    </p>
-    <p>
-      <strong>Especie:</strong>
-      {{ character.species }}
-    </p>
-    <p>
-      <strong>Origen:</strong>
-      {{ character.origin.name }}
-    </p>
-    <p>
-      <strong>Número de episodios:</strong>
-      {{ character.episode.length }}
-    </p>
-    <button (click)="handleBack()">
-      Volver
-    </button>
+@if (loading()) {
+  <div class="message-container">
+    <img src="/icons/spinner.svg" alt="loading" class="spinner">
   </div>
 
-</section>
+} @else if (error()) {
+   <div class="message-container">
+    <p class="error-text">No se pudo cargar el personaje</p>
+    <button routerLink="/">Volver</button>
+  </div>
+
+} @else if (character(); as character) {
+  <section class="character-detail">
+    <img [src]="character.image" [alt]="character.name" />
+
+    <div class="character-info">
+      <h1>{{ character.name }}</h1>
+      <p>
+        <strong>Estado:</strong>
+        {{ character.status | statusTranslate }}
+      </p>
+      <p>
+        <strong>Género:</strong>
+        {{ character.gender }}
+      </p>
+      <p>
+        <strong>Especie:</strong>
+        {{ character.species }}
+      </p>
+      <p>
+        <strong>Origen:</strong>
+        {{ character.origin.name }}
+      </p>
+      <p>
+        <strong>Número de episodios:</strong>
+        {{ character.episode.length }}
+      </p>
+
+      <button routerLink="/">Volver</button>
+    </div>
+  </section>
+}

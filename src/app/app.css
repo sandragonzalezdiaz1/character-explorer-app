@@ -1,17 +1,40 @@
 :host {
   display: block;
   min-height: 100vh;
-  color: white;
+  color: var(--text-color);
   padding: 30px;
-
 }
 
-h1 {
-  text-align: center;
-  font-size: 4rem;
-  margin-bottom: 30px;
-  color: #7cff00;
-  text-shadow:
-    0 0 10px #7cff00,
-    0 0 20px #00ffcc;
+/* Boton para cambiar el tema */
+.theme-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+
+  width: 50px;
+  height: 50px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: var(--card-background);
+  color: var(--text-color);
+  font-size: 1.4rem;
+
+  cursor: pointer;
+  z-index: 999;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.3s ease;
+
+  box-shadow:
+    0 0 10px var(--shadow-primary);
+}
+
+.theme-button:hover {
+  transform: scale(1.05);
+  box-shadow:
+    0 0 14px var(--secondary-color);
 }

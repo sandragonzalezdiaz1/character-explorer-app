@@ -1,10 +1,20 @@
+/* Titulo */
+h1 {
+  text-align: center;
+  font-size: 4rem;
+  margin-bottom: 30px;
+  color: var(--title-color);
+  text-shadow:
+    0 0 12px var(--title-shadow);
+}
+
 /* Filtros */
 .filters {
   display: flex;
   justify-content: center;
   gap: 16px;
   flex-wrap: wrap;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 }
 
 /* Contenedor de personajes */
@@ -15,63 +25,49 @@
   gap: 24px;
 }
 
-/* Paginación */
-.pagination {
-  margin-top: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-}
-
-/* Botones */
-button {
-  padding: 12px 20px;
-  border: none;
-  border-radius: 10px;
-
-  background-color: #00ffcc;
-  color: #111;
-
-  font-weight: bold;
-  cursor: pointer;
-
-  transition: 0.2s;
-}
-
-button:hover:not(:disabled) {
-  transform: scale(1.05);
-
-  box-shadow:
-    0 0 10px #00ffcc,
-    0 0 20px #00ffcc;
-}
-
-button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
 /* Texto sin resultados */
 .no-results {
   text-align: center;
   font-size: 1.5rem;
-  color: #7cff00;
+  color: var(--primary-color);
 }
-
 
 .total-characters {
   width: fit-content;
   margin: 20px auto 0;
   padding: 10px 18px;
   border-radius: 12px;
-  background-color: rgba(0, 0, 0, 0.4);
-  border: 1px solid #00ffcc;
-  color: #7cff00;
+  background-color: var(--info-background);
+  border: 1px solid var(--border-primary);
+  color: var(--primary-color);
   font-weight: bold;
-  text-shadow:
-    0 0 8px rgba(124, 255, 0, 0.7);
-  box-shadow:
-    0 0 10px rgba(0, 255, 204, 0.3);
+  text-shadow: 0 0 8px var(--glow-secondary);
+  box-shadow: 0 0 10px var(--shadow-primary);
+}
 
+/* Spinner */
+.spinner-container {
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.spinner {
+  width: 60px;
+  height: 60px;
+  color: var(--secondary-color);
+  animation: rotate 1s linear infinite;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.scroll-anchor {
+  height: 1px;
 }

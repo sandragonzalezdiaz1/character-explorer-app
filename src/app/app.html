@@ -1,6 +1,9 @@
-<main class="main">
-  <h1>Character Explorer</h1>
-  <app-character-list></app-character-list>
-</main>
+<button class="theme-button" (click)="toggleTheme()">
+  @if (isDarkMode()) {
+    ☀️
+  } @else {
+    🌙
+  }
+</button>
 
 <router-outlet />

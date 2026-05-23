@@ -1,12 +1,13 @@
-<div class="character-card" (click)="handleCharacterSelection()">
-    <img [src]="character.image" [alt]="character.name" (error)="handleImageError($event)">
-    <div class="character-card-content">
+<a class="character-card" [routerLink]="['/character', character.id]">
+  <img [src]="character.image" [alt]="character.name" (error)="handleImageError($event)">
+  <div class="character-card-content">
     <h2>{{ character.name }}</h2>
     <p>
-      <strong>Estado: </strong> {{ character.status | statusTranslate }}
+      <strong>Estado:</strong> {{ character.status | statusTranslate }}
     </p>
     <p>
-      <strong>Especie: </strong> {{ character.species }}
+      <strong>Especie:</strong> {{ character.species }}
     </p>
+    <span class="detail-link">Ver detalle →</span>
   </div>
-</div>
+</a>
