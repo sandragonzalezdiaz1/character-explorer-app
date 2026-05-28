@@ -1,7 +1,7 @@
-<label for="status">Selecciona un estado:</label>
+<label for="status" i18n="@@statusFilter.label">Selecciona un estado:</label>
 <select name="status" id="status" [value]="status" (change)="handleStatusChange($event)">
-  <option value="">Todos los estados</option>
-  <option value="Alive">Vivo</option>
-  <option value="Dead">Muerto</option>
-  <option value="unknown">Desconocido</option>
+  <option value="" i18n="@@statusFilter.all">Todos los estados</option>
+  <option value="Alive" i18n="@@statusFilter.alive">Vivo</option>
+  <option value="Dead" i18n="@@statusFilter.dead">Muerto</option>
+  <option value="unknown" i18n="@@statusFilter.unknown">Desconocido</option>
 </select>

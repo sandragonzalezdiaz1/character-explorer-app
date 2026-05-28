@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { StatusTranslatePipe } from '../../status-translate.pipe';
+import { StatusTranslatePipe } from '../../pipes/status-translate.pipe';
 import { RouterLink } from "@angular/router";
 import { Character } from '../../interfaces/character';
 

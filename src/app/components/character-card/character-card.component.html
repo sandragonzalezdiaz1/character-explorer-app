@@ -3,11 +3,11 @@
   <div class="character-card-content">
     <h2>{{ character.name }}</h2>
     <p>
-      <strong>Estado:</strong> {{ character.status | statusTranslate }}
+      <strong i18n="@@characterCard.status">Estado:</strong> {{ character.status | statusTranslate }}
     </p>
     <p>
-      <strong>Especie:</strong> {{ character.species }}
+      <strong i18n="@@characterCard.species">Especie:</strong> {{ character.species }}
     </p>
-    <span class="detail-link">Ver detalle →</span>
+    <span class="detail-link" i18n="@@characterCard.detailLink">Ver detalle →</span>
   </div>
 </a>

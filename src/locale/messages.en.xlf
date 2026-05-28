@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="characterCard.status" datatype="html">
+        <source>Estado:</source>
+        <target>Status:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/character-card/character-card.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="characterCard.species" datatype="html">
+        <source>Especie:</source>
+        <target>Species:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/character-card/character-card.component.html</context>
+          <context context-type="linenumber">9,10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="characterCard.detailLink" datatype="html">
+        <source>Ver detalle →</source>
+        <target>View details →</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/character-card/character-card.component.html</context>
+          <context context-type="linenumber">11,13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="errorText" datatype="html">
+        <source>No se pudo cargar el personaje</source>
+        <target>Character could not be loaded</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/character-detail/character-detail.component.html</context>
+          <context context-type="linenumber">8,9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="backButton" datatype="html">
+        <source>Volver</source>
+        <target>Back</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/character-detail/character-detail.component.html</context>
+          <context context-type="linenumber">9,12</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/character-detail/character-detail.component.html</context>
+          <context context-type="linenumber">39,41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="characterDetail.status" datatype="html">
+        <source>Estado:</source>
+        <target>Status:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/character-detail/character-detail.component.html</context>
+          <context context-type="linenumber">19,20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="characterDetail.gender" datatype="html">
+        <source>Género:</source>
+        <target>Gender:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/character-detail/character-detail.component.html</context>
+          <context context-type="linenumber">23,24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="characterDetail.species" datatype="html">
+        <source>Especie:</source>
+        <target>Species:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/character-detail/character-detail.component.html</context>
+          <context context-type="linenumber">27,28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="characterDetail.origin" datatype="html">
+        <source>Origen:</source>
+        <target>Origin:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/character-detail/character-detail.component.html</context>
+          <context context-type="linenumber">31,32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="characterDetail.episodes" datatype="html">
+        <source>Número de episodios:</source>
+        <target>Number of episodes:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/character-detail/character-detail.component.html</context>
+          <context context-type="linenumber">35,36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="characterExplorerTitle" datatype="html">
+        <source>Explorador de personajes</source>
+        <target>Character Explorer</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/character-list/character-list.component.html</context>
+          <context context-type="linenumber">1,3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="loadingAlt" datatype="html">
+        <source>Cargando</source>
+        <target>Loading</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/character-list/character-list.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/character-list/character-list.component.html</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="noResults" datatype="html">
+        <source>No hay resultados</source>
+        <target>No results found</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/character-list/character-list.component.html</context>
+          <context context-type="linenumber">19,24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="loadError" datatype="html">
+        <source>No se pudieron cargar los personajes</source>
+        <target>Characters could not be loaded</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/character-list/character-list.component.html</context>
+          <context context-type="linenumber">25,28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="totalCharacters" datatype="html">
+        <source> Mostrando <x id="INTERPOLATION" equiv-text="{{ characters().length }}"/> de <x id="INTERPOLATION_1" equiv-text="{{ totalCharacters() }}"/> personajes </source>
+        <target>Showing <x id="INTERPOLATION"/> of <x id="INTERPOLATION_1"/> characters</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/character-list/character-list.component.html</context>
+          <context context-type="linenumber">30,34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="searchInput.label" datatype="html">
+        <source>Busca un personaje por su nombre:</source>
+        <target>Search a character by name:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/search-input/search-input.component.html</context>
+          <context context-type="linenumber">1,2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="statusFilter.label" datatype="html">
+        <source>Selecciona un estado:</source>
+        <target>Select a status:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/status-filter/status-filter.component.html</context>
+          <context context-type="linenumber">1,2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="statusFilter.all" datatype="html">
+        <source>Todos los estados</source>
+        <target>All statuses</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/status-filter/status-filter.component.html</context>
+          <context context-type="linenumber">3,4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="statusFilter.alive" datatype="html">
+        <source>Vivo</source>
+        <target>Alive</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/status-filter/status-filter.component.html</context>
+          <context context-type="linenumber">4,5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="statusFilter.dead" datatype="html">
+        <source>Muerto</source>
+        <target>Dead</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/status-filter/status-filter.component.html</context>
+          <context context-type="linenumber">5,6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="statusFilter.unknown" datatype="html">
+        <source>Desconocido</source>
+        <target>Unknown</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/status-filter/status-filter.component.html</context>
+          <context context-type="linenumber">6,7</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

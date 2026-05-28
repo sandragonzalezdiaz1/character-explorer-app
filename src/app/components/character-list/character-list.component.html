@@ -1,4 +1,4 @@
-<h1>Character Explorer</h1>
+<h1 i18n="@@characterExplorerTitle">Explorador de personajes</h1>
 <div class="filters">
   <app-search-input (search)="handleSearch($event)"></app-search-input>
   <app-status-filter [status]="selectedStatus()" (selectedStatus)="handleChangeStatus($event)"></app-status-filter>
@@ -6,7 +6,7 @@
 
 @if(loading()){
 <div class="spinner-container">
-  <img src="/icons/spinner.svg" alt="loading" class="spinner">
+  <img src="/icons/spinner.svg" alt="Cargando" i18n-alt="@@loadingAlt" class="spinner">
 </div>
 
 } @else {
@@ -16,24 +16,24 @@
   <app-character-card [character]="character"></app-character-card>
 
   } @empty {
-  <p class="no-results">No hay resultados</p>
+  <p class="no-results" i18n="@@noResults">No hay resultados</p>
   }
 </div>
 }
 
 @if (error()) {
-  <p class="no-results">No se pudieron cargar los personajes</p>
+  <p class="no-results" i18n="@@loadError">No se pudieron cargar los personajes</p>
 }
 
 @if(!loading() && totalCharacters() > 0){
-  <p class="total-characters">
+  <p class="total-characters" i18n="@@totalCharacters">
     Mostrando {{ characters().length }} de {{ totalCharacters() }} personajes
   </p>
 }
 
 @if (loadingMore()) {
 <div class="spinner-container spinner-container-small">
-  <img src="/icons/spinner.svg" alt="loading" class="spinner">
+  <img src="/icons/spinner.svg" alt="Cargando"  i18n-alt="@@loadingAlt" class="spinner">
 </div>
 }
 

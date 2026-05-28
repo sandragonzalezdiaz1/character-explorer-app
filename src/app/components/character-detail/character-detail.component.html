@@ -1,12 +1,12 @@
 @if (loading()) {
   <div class="message-container">
-    <img src="/icons/spinner.svg" alt="loading" class="spinner">
+    <img src="/icons/spinner.svg" alt="loading" i18n="@@loadingAlt" class="spinner">
   </div>
 
 } @else if (error()) {
-   <div class="message-container">
-    <p class="error-text">No se pudo cargar el personaje</p>
-    <button routerLink="/">Volver</button>
+  <div class="message-container">
+    <p class="error-text" i18n="@@errorText">No se pudo cargar el personaje</p>
+    <button routerLink="/" i18n="@@backButton">Volver</button>
   </div>
 
 } @else if (character(); as character) {
@@ -16,27 +16,27 @@
     <div class="character-info">
       <h1>{{ character.name }}</h1>
       <p>
-        <strong>Estado:</strong>
+        <strong i18n="@@characterDetail.status">Estado:</strong>
         {{ character.status | statusTranslate }}
       </p>
       <p>
-        <strong>Género:</strong>
+        <strong i18n="@@characterDetail.gender">Género:</strong>
         {{ character.gender }}
       </p>
       <p>
-        <strong>Especie:</strong>
+        <strong i18n="@@characterDetail.species">Especie:</strong>
         {{ character.species }}
       </p>
       <p>
-        <strong>Origen:</strong>
+        <strong i18n="@@characterDetail.origin">Origen:</strong>
         {{ character.origin.name }}
       </p>
       <p>
-        <strong>Número de episodios:</strong>
+        <strong i18n="@@characterDetail.episodes">Número de episodios:</strong>
         {{ character.episode.length }}
       </p>
 
-      <button routerLink="/">Volver</button>
+      <button routerLink="/" i18n="@@backButton">Volver</button>
     </div>
   </section>
 }

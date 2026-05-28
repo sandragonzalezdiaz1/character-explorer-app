@@ -1,5 +1,5 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
-import { StatusTranslatePipe } from '../../status-translate.pipe';
+import { StatusTranslatePipe } from '../../pipes/status-translate.pipe';
 import { RouterLink, ActivatedRoute } from '@angular/router';
 import { CharacterService } from '../../services/character.service';
 import { Character } from '../../interfaces/character';
