@@ -1,7 +1,7 @@
 <label for="status">Selecciona un estado:</label>
-<select name="status" id="status" (change)="handleStatusChange($event)">
+<select name="status" id="status" [value]="status" (change)="handleStatusChange($event)">
   <option value="">Todos los estados</option>
-  <option value="alive">Vivo</option>
-  <option value="dead">Muerto</option>
+  <option value="Alive">Vivo</option>
+  <option value="Dead">Muerto</option>
   <option value="unknown">Desconocido</option>
 </select>

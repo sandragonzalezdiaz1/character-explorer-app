@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, Input } from '@angular/core';
 
 @Component({
   selector: 'app-status-filter',
@@ -8,7 +8,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 
 
 export class StatusFilterComponent {
-
+  @Input() status = '';
   @Output() selectedStatus = new EventEmitter<string>();
 
   handleStatusChange(event: Event) {

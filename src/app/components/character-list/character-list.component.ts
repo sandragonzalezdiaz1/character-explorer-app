@@ -6,22 +6,17 @@ import { SearchInputComponent } from '../search-input/search-input.component';
 import { StatusFilterComponent } from '../status-filter/status-filter.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Character } from '../../interfaces/character';
-import { catchError, of, switchMap, tap, finalize } from 'rxjs';
+import { catchError, of, switchMap, tap, finalize, retry } from 'rxjs';
 
 @Component({
   selector: 'app-character-list',
-  imports: [
-    CharacterCardComponent,
-    SearchInputComponent,
-    StatusFilterComponent],
+  imports: [CharacterCardComponent, SearchInputComponent, StatusFilterComponent],
   templateUrl: './character-list.component.html',
   styleUrls: ['./character-list.component.css'],
 })
 
-
 export class CharacterListComponent implements OnInit, OnDestroy, AfterViewInit {
-
-  // Inyección de dependencias
+  // INYECCIÓN DE DEPENDENCIAS
   // Servicio encargado de realizar las peticiones HTTP
   private characterService = inject(CharacterService);
 
@@ -34,7 +29,7 @@ export class CharacterListComponent implements OnInit, OnDestroy, AfterViewInit 
   // Referencia para destruir automáticamente observables
   private destroyRef = inject(DestroyRef);
 
-
+  // SIGNALS
   public characters = signal<Character[]>([]); // Lista de personajes cargados
 
   protected searchName = signal('');
@@ -44,28 +39,30 @@ export class CharacterListComponent implements OnInit, OnDestroy, AfterViewInit 
   protected currentPage = signal(1);
   protected totalPages = signal(1);
 
-  protected loading = signal(false); // Estado de carga inicial
-  protected loadingMore = signal(false); // Estado de carga de nuevas páginas (scroll infinito)
+  // Estados de carga y error
+  protected loading = signal(false); // Carga inicial
+  protected loadingMore = signal(false); // Carga de nuevas páginas (scroll infinito)
   protected error = signal(false);
 
+  // SCROLL INFINITO
   // Referencia al div que detecta el final del scroll
   @ViewChild('scrollAnchor')
   scrollAnchor!: ElementRef<HTMLDivElement>;
 
-  // Observer encargado de detectar cuándo el usuario llega al final de la página
+  // Observer encargado de detectar cuando el usuario llega al final de la página
   private observer?: IntersectionObserver;
-
 
   ngOnInit() {
     // Escuchamos cambios en los query params
     this.route.queryParams
       .pipe(
-        // Actualizamos estados antes de hacer la petición
+        // Actualizamos filtros antes de hacer la petición
         tap((params) => {
           this.searchName.set(params['name'] || '');
           this.selectedStatus.set(params['status'] || '');
           this.resetCharacters();
           this.loading.set(true); // Activamos loading inicial
+
         }),
         // Realizamos la petición HTTP
         switchMap(() =>
@@ -74,12 +71,12 @@ export class CharacterListComponent implements OnInit, OnDestroy, AfterViewInit 
             .pipe(
               // Manejo de errores
               catchError((err) => {
-                // Si no hay resultados, no muestra mensaje de error en pantalla
                 if (err.status === 404) {
                   this.error.set(false);
                 } else {
                   this.error.set(true);
                 }
+
                 // Devuelve una estructura vacia
                 return of({
                   info: {
@@ -89,40 +86,48 @@ export class CharacterListComponent implements OnInit, OnDestroy, AfterViewInit 
                     prev: null,
                   },
                   results: [],
-                })
-              })
-            )
+                });
+              }),
+            ),
         ),
         // Cancela automáticamente la suscripción al destruir el componente
-        takeUntilDestroyed(this.destroyRef)
+        takeUntilDestroyed(this.destroyRef),
       )
       // Procesamos la respuesta
       .subscribe((response) => {
+
         this.characters.set(response.results);
         this.totalPages.set(response.info.pages);
         this.totalCharacters.set(response.info.count);
         this.loading.set(false); // Finalizamos loading
+        // Esperamos al renderizado antes de observar el anchor
+        setTimeout(() => {
+          this.observeScrollAnchor();
+        });
 
       });
   }
 
-
   ngAfterViewInit() {
-    // Creamos el observel del scroll
-    this.observer = new IntersectionObserver((entries) => {
-      const entry = entries[0];
+    // Creamos el observer encargado del scroll infinito
+    this.observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
 
-      // Si el anchor entra en pantalla, carga más personajes
-      if (entry.isIntersecting) {
-        this.loadMoreCharacters();
-      }
-    }, {
-      root: null,
-      rootMargin: '400px',
-      threshold: 0.1
-    });
+        // Si el anchor entra en pantalla, cargamos más personajes
+        if (entry.isIntersecting) {
+          this.loadMoreCharacters();
+        }
+      },
+      {
+        root: null,
+        rootMargin: '50px', // Empieza a cargar antes de llegar al final
+        threshold: 0.1,
+      },
+    );
 
-    this.observer.observe(this.scrollAnchor.nativeElement);
+    this.observeScrollAnchor();
+
   }
 
   ngOnDestroy() {
@@ -131,64 +136,73 @@ export class CharacterListComponent implements OnInit, OnDestroy, AfterViewInit 
   }
 
   loadMoreCharacters() {
-
-    // Evita que se lancen varias peticiones a la vez
+    // Evita múltiples peticiones simultáneas
     if (this.loading() || this.loadingMore()) return;
 
     // Si ya estamos en la última página, detenemos la carga
     if (this.currentPage() >= this.totalPages()) return;
 
-    // Pausamos el observer mientras carga para evitar llamadas duplicadas
+    // Pausamos temporalmente el observer
     this.observer?.disconnect();
 
     // Calcula la siguiente página
     const nextPage = this.currentPage() + 1;
 
-    this.loadingMore.set(true); // Activa el loading secundario
+    // Guardamos filtros actuales
+    // Sirve para detectar si el usuario cambia filtros durante la petición
+    const currentSearchName = this.searchName();
+    const currentStatus = this.selectedStatus();
+
+  // Reiniciamos error y activamos el loading(spinner) secundario
+    this.error.set(false);
+    this.loadingMore.set(true); 
 
     this.characterService
-      .getCharacters(
-        this.searchName(),
-        this.selectedStatus(),
-        nextPage
-      )
+      .getCharacters(currentSearchName, currentStatus, nextPage)
       .pipe(
-        catchError((err) => {
-          // Si no hay resultados, no muestra mensaje de error en pantalla
-          if (err.status === 404) {
-            this.error.set(false);
-          } else {
-            this.error.set(true);
-          }
-
-
-          return of({
-            info: {
-              count: this.totalCharacters(),
-              pages: this.totalPages(),
-              next: null,
-              prev: null,
-            },
-            results: [],
-          });
+        // Reintenta automáticamente 1 vez si falla
+        retry({
+          count: 1,
+          delay: 1000,
         }),
-        // finalize se ejecuta tanto si la peticion sale bien como si falla
+        // Si sigue fallando devolvemos null
+        catchError(() => {
+          return of(null);
+
+        }),
+        // Se ejecuta siempre, tanto si falla como si no
         finalize(() => {
           this.loadingMore.set(false);
-          // Reactiva el observer para que pueda detectar el siguiente final
-          if (this.scrollAnchor) {
-            this.observer?.observe(this.scrollAnchor.nativeElement);
-          }
+          // Reactivamos el observer después del renderizado
+          setTimeout(() => {
+            this.observeScrollAnchor();
+          }, 500);
+
         }),
-        takeUntilDestroyed(this.destroyRef)
+        takeUntilDestroyed(this.destroyRef),
       )
       .subscribe((response) => {
-        // Añade nuevos personajes al array existente
-        this.characters.update((currentCharacters) => [
-          ...currentCharacters,
-          ...response.results,
-        ]);
+        // Si no hay respuesta mostramos error
+        if (!response) {
+          this.error.set(true);
+          return;
+        }
 
+        // Si el usuario cambió filtros mientras cargaba, ignoramos la respuesta
+        const filtersChanged = currentSearchName !== this.searchName()
+          || currentStatus !== this.selectedStatus();
+
+        if (filtersChanged) return;
+
+        // Si no hay resultados detenemos carga
+        if (response.results.length === 0) return;
+
+        this.error.set(false);
+
+        // Añade nuevos personajes al array existente
+        this.characters.update((currentCharacters) => [...currentCharacters, ...response.results]);
+
+        // Actualizamos paginación
         this.currentPage.set(nextPage);
         this.totalPages.set(response.info.pages);
         this.totalCharacters.set(response.info.count);
@@ -196,37 +210,50 @@ export class CharacterListComponent implements OnInit, OnDestroy, AfterViewInit 
       });
   }
 
+  // Actualiza búsqueda por nombre del personaje
   handleSearch(value: string) {
     this.searchName.set(value);
     this.updateUrl();
-
   }
 
+  // Actualiza filtro por estado
   handleChangeStatus(value: string) {
     this.selectedStatus.set(value);
     this.updateUrl();
-
   }
 
   private resetCharacters() {
+    // Detiene el observer mientras se reinicia el listado
+    this.observer?.disconnect();
+
+    // Reinicia estados
     this.characters.set([]);
     this.currentPage.set(1);
     this.totalPages.set(1);
     this.totalCharacters.set(0);
     this.error.set(false);
+
   }
 
+  // Actualiza query params de la URL
   updateUrl() {
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams: {
         name: this.searchName() || null,
         status: this.selectedStatus() || null,
-        page: null
+        page: null,
       },
-      queryParamsHandling: 'merge'
+      queryParamsHandling: 'merge',
     });
   }
 
+  // Activa el observer si todavía quedan páginas por cargar
+  private observeScrollAnchor() {
+    if (this.observer && this.scrollAnchor && !this.loading() && !this.loadingMore() &&
+      this.currentPage() < this.totalPages()) {
 
+      this.observer.observe(this.scrollAnchor.nativeElement);
+    }
+  }
 }

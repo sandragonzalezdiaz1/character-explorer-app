@@ -11,7 +11,7 @@
 
 } @else if (character(); as character) {
   <section class="character-detail">
-    <img [src]="character.image" [alt]="character.name" />
+    <img [src]="character.image" [alt]="character.name" loading="eager" />
 
     <div class="character-info">
       <h1>{{ character.name }}</h1>

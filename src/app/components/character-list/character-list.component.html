@@ -1,7 +1,7 @@
 <h1>Character Explorer</h1>
 <div class="filters">
   <app-search-input (search)="handleSearch($event)"></app-search-input>
-  <app-status-filter (selectedStatus)="handleChangeStatus($event)"></app-status-filter>
+  <app-status-filter [status]="selectedStatus()" (selectedStatus)="handleChangeStatus($event)"></app-status-filter>
 </div>
 
 @if(loading()){
@@ -21,13 +21,6 @@
 </div>
 }
 
-
-@if (loadingMore()) {
-<div class="spinner-container">
-  <img src="/icons/spinner.svg" alt="loading" class="spinner">
-</div>
-}
-
 @if (error()) {
   <p class="no-results">No se pudieron cargar los personajes</p>
 }
@@ -37,5 +30,12 @@
     Mostrando {{ characters().length }} de {{ totalCharacters() }} personajes
   </p>
 }
+
+@if (loadingMore()) {
+<div class="spinner-container spinner-container-small">
+  <img src="/icons/spinner.svg" alt="loading" class="spinner">
+</div>
+}
+
 
 <div #scrollAnchor class="scroll-anchor"></div>
