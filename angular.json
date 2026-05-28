@@ -24,15 +24,19 @@
           "options": {
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
-            "localize": true,
+            "localize": false,
             "assets": [
               {
                 "glob": "**/*",
                 "input": "public"
               }
             ],
-            "styles": ["src/styles.css"],
-            "polyfills": ["@angular/localize/init"]
+            "styles": [
+              "src/styles.css"
+            ],
+            "polyfills": [
+              "@angular/localize/init"
+            ]
           },
           "configurations": {
             "production": {
@@ -55,14 +59,17 @@
               "extractLicenses": false,
               "sourceMap": true
             },
-            "en": {
-              "localize": ["en"]
-            },
             "es": {
-              "localize": ["es"]
+              "localize": [
+                "es"
+              ]
+            },
+            "en": {
+              "localize": [
+                "en"
+              ]
             }
           },
-
           "defaultConfiguration": "production"
         },
         "serve": {
@@ -74,11 +81,11 @@
             "development": {
               "buildTarget": "ej-character-explorer:build:development"
             },
-            "en": {
-              "buildTarget": "ej-character-explorer:build:development,en"
-            },
             "es": {
               "buildTarget": "ej-character-explorer:build:development,es"
+            },
+            "en": {
+              "buildTarget": "ej-character-explorer:build:development,en"
             }
           },
           "defaultConfiguration": "development"

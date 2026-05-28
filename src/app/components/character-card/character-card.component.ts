@@ -25,6 +25,6 @@ export class CharacterCardComponent {
     imgElement.onerror = null;
     imgElement.src = '/images/character-placeholder.svg';
 
-  }
+  } 
 
 }
