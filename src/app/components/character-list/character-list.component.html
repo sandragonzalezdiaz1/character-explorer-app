@@ -12,8 +12,8 @@
 } @else {
 
 <div class="characters-container">
-  @for (character of characters(); track character.id) {
-  <app-character-card [character]="character"></app-character-card>
+  @for (character of characters(); track character.id; let first = $first) {
+  <app-character-card [character]="character" [priorityImage]="first"></app-character-card>
 
   } @empty {
   <p class="no-results" i18n="@@noResults">No hay resultados</p>

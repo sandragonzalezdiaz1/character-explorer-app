@@ -1,42 +1,50 @@
 @if (loading()) {
-  <div class="message-container">
-    <img src="/icons/spinner.svg" alt="loading" i18n="@@loadingAlt" class="spinner">
-  </div>
+<div class="message-container">
+  <img src="/icons/spinner.svg" alt="loading" i18n="@@loadingAlt" class="spinner">
+</div>
 
 } @else if (error()) {
-  <div class="message-container">
-    <p class="error-text" i18n="@@errorText">No se pudo cargar el personaje</p>
-    <button routerLink="/" i18n="@@backButton">Volver</button>
-  </div>
+<div class="message-container">
+  <p class="error-text" i18n="@@errorText">No se pudo cargar el personaje</p>
+  <button routerLink="/" i18n="@@backButton">Volver</button>
+</div>
 
 } @else if (character(); as character) {
-  <section class="character-detail">
-    <img [src]="character.image" [alt]="character.name" loading="eager" />
+<section class="character-detail">
+  <img [src]="character.image" [alt]="character.name" loading="eager" />
 
-    <div class="character-info">
-      <h1>{{ character.name }}</h1>
-      <p>
-        <strong i18n="@@characterDetail.status">Estado:</strong>
-        {{ character.status | statusTranslate }}
-      </p>
-      <p>
-        <strong i18n="@@characterDetail.gender">Género:</strong>
-        {{ character.gender }}
-      </p>
-      <p>
-        <strong i18n="@@characterDetail.species">Especie:</strong>
-        {{ character.species }}
-      </p>
-      <p>
-        <strong i18n="@@characterDetail.origin">Origen:</strong>
-        {{ character.origin.name }}
-      </p>
-      <p>
-        <strong i18n="@@characterDetail.episodes">Número de episodios:</strong>
-        {{ character.episode.length }}
-      </p>
+  <div class="character-info">
+    <h1>{{ character.name }}</h1>
+    <p>
+      <strong i18n="@@characterDetail.status">Estado:</strong>
+      {{ character.status | statusTranslate }}
+    </p>
+    <p>
+      <strong i18n="@@characterDetail.gender">Género:</strong>
+      {{ character.gender }}
+    </p>
+    <p>
+      <strong i18n="@@characterDetail.species">Especie:</strong>
+      {{ character.species }}
+    </p>
+    <p>
+      <strong i18n="@@characterDetail.origin">Origen:</strong>
+      {{ character.origin.name }}
+    </p>
+    <p>
+      <strong i18n="@@characterDetail.episodes">Número de episodios:</strong>
+      {{ character.episode.length }}
+    </p>
+    <div class="character-actions">
+      <button type="button" class="favorite-button" [class.is-favorite]="isFavorite(character.id)"
+        (click)="toggleFavorite(character.id); $event.stopPropagation()">
+          {{ isFavorite(character.id) ? '♥' : '♡' }}
+      </button>
 
-      <button routerLink="/" i18n="@@backButton">Volver</button>
+      <button routerLink="/" class="back-button" i18n="@@backButton">
+        Volver
+      </button>
     </div>
-  </section>
+  </div>
+</section>
 }

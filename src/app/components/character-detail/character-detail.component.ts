@@ -3,6 +3,7 @@ import { StatusTranslatePipe } from '../../pipes/status-translate.pipe';
 import { RouterLink, ActivatedRoute } from '@angular/router';
 import { CharacterService } from '../../services/character.service';
 import { Character } from '../../interfaces/character';
+import { FavoritesService } from '../../services/favorites.service';
 
 @Component({
   selector: 'app-character-detail',
@@ -19,6 +20,7 @@ export class CharacterDetailComponent implements OnInit {
   // Inyectamos dependencias
   private route = inject(ActivatedRoute);
   private characterService = inject(CharacterService);
+  private favoritesService = inject(FavoritesService);
 
   character = signal<Character | null>(null);
   loading = signal(true);
@@ -50,5 +52,14 @@ export class CharacterDetailComponent implements OnInit {
       this.loading.set(false);
     }
 
+  }
+
+  isFavorite(characterId: number) {
+    return this.favoritesService.isFavorite(characterId);
+  }
+
+  
+  toggleFavorite(characterId: number) {
+    this.favoritesService.toggleFavorite(characterId);
   }
 }
