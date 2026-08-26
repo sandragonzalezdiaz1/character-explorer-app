@@ -1,0 +1,25 @@
+<h1 i18n="@@favoritesTitle">Personajes favoritos</h1>
+
+@if (loading()) {
+<div class="spinner-container">
+  <img src="/icons/spinner.svg" alt="Cargando" i18n-alt="@@loadingAlt" class="spinner">
+</div>
+
+} @else {
+
+<div class="characters-container">
+  @for (character of favoriteCharacters(); track character.id; let index = $index) {
+  <app-character-card [character]="character" [priorityImage]="index < 4"></app-character-card>
+
+  } @empty {
+  <div class="favorites-empty">
+    <p class="no-results" i18n="@@favoritesEmpty">Todavía no tienes personajes favoritos</p>
+    <a routerLink="/" class="back-button" i18n="@@favoritesBackToExplorer">Ir al explorador</a>
+  </div>
+  }
+</div>
+}
+
+@if (error()) {
+  <p class="no-results" i18n="@@favoritesLoadError">No se pudieron cargar los favoritos</p>
+}

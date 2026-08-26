@@ -4,6 +4,7 @@ import { RouterLink, ActivatedRoute } from '@angular/router';
 import { CharacterService } from '../../services/character.service';
 import { Character } from '../../interfaces/character';
 import { FavoritesService } from '../../services/favorites.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-character-detail',
@@ -17,10 +18,11 @@ import { FavoritesService } from '../../services/favorites.service';
 
 export class CharacterDetailComponent implements OnInit {
 
-  // Inyectamos dependencias
+  // Inyección de dependencias
   private route = inject(ActivatedRoute);
   private characterService = inject(CharacterService);
   private favoritesService = inject(FavoritesService);
+  private location: Location = inject(Location);
 
   character = signal<Character | null>(null);
   loading = signal(true);
@@ -58,8 +60,18 @@ export class CharacterDetailComponent implements OnInit {
     return this.favoritesService.isFavorite(characterId);
   }
 
-  
   toggleFavorite(characterId: number) {
     this.favoritesService.toggleFavorite(characterId);
+  }
+
+  handleImageError(event: Event) {
+    const imgElement = event.target as HTMLImageElement;
+
+    imgElement.onerror = null;
+    imgElement.src = '/images/character-placeholder.svg';
+  }
+
+  goBack() {
+    this.location.back(); 
   }
 }

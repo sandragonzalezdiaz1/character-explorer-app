@@ -212,13 +212,31 @@ export class CharacterListComponent implements OnInit, OnDestroy, AfterViewInit 
 
   // Actualiza búsqueda por nombre del personaje
   handleSearch(value: string) {
+
+    if (value === this.searchName()) return;
+
     this.searchName.set(value);
     this.updateUrl();
   }
 
   // Actualiza filtro por estado
   handleChangeStatus(value: string) {
+
+    if (value === this.selectedStatus()) return;
+
     this.selectedStatus.set(value);
+    this.updateUrl();
+  }
+
+  hasActiveFilters() {
+    return !!this.searchName() || !!this.selectedStatus();
+  }
+
+  clearFilters() {
+    if (!this.hasActiveFilters()) return;
+
+    this.searchName.set('');
+    this.selectedStatus.set('');
     this.updateUrl();
   }
 

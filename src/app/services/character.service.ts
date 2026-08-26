@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Character } from '../interfaces/character';
 import { CharacterApiResponse } from '../interfaces/character-api-response';
-import { Observable, of, tap } from 'rxjs';
+import { map, Observable, of, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -56,6 +56,17 @@ export class CharacterService {
   // Obtiene un personaje concreto por su id
   getCharacterById(id: string) {
     return this.http.get<Character>(`${this.apiUrl}/${id}`);
+  }
+
+  // Obtiene varios personajes por sus ids
+  getCharactersByIds(ids: number[]): Observable<Character[]> {
+    if (ids.length === 0) return of([]);
+
+    return this.http
+      .get<Character | Character[]>(`${this.apiUrl}/${ids.join(',')}`)
+      .pipe(
+        map((response) => Array.isArray(response) ? response : [response])
+      );
   }
 
 }

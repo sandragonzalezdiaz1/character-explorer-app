@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, DestroyRef, EventEmitter, inject, Input, Output } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Subject, debounceTime, distinctUntilChanged } from 'rxjs';
 
 
@@ -8,6 +9,10 @@ import { Subject, debounceTime, distinctUntilChanged } from 'rxjs';
   styleUrls: ['./search-input.component.css']
 })
 export class SearchInputComponent {
+
+  private destroyRef = inject(DestroyRef);
+
+  @Input() value = '';
 
   @Output() search = new EventEmitter<string>();
 
@@ -19,7 +24,8 @@ export class SearchInputComponent {
     this.searchSubject
       .pipe(
           debounceTime(400),
-          distinctUntilChanged() 
+          distinctUntilChanged(),
+          takeUntilDestroyed(this.destroyRef)
       )
       .subscribe((value) => {
         this.search.emit(value);

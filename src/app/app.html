@@ -1,3 +1,12 @@
+<nav class="app-nav">
+  <a routerLink="/" routerLinkActive="is-active" [routerLinkActiveOptions]="{ exact: true }" i18n="@@navExplorer">
+    Explorador
+  </a>
+  <a routerLink="/favorites" routerLinkActive="is-active" i18n="@@navFavorites">
+    Favoritos
+  </a>
+</nav>
+
 <button class="theme-button" (click)="toggleTheme()">
   @if (isDarkMode()) {
     ☀️

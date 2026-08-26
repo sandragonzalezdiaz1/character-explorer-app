@@ -1,7 +1,15 @@
 <h1 i18n="@@characterExplorerTitle">Explorador de personajes</h1>
 <div class="filters">
-  <app-search-input (search)="handleSearch($event)"></app-search-input>
+  <app-search-input [value]="searchName()" (search)="handleSearch($event)"></app-search-input>
   <app-status-filter [status]="selectedStatus()" (selectedStatus)="handleChangeStatus($event)"></app-status-filter>
+  <button
+    type="button"
+    class="clear-filters-button"
+    [disabled]="!hasActiveFilters()"
+    (click)="clearFilters()"
+    i18n="@@clearFiltersButton">
+    Limpiar filtros
+  </button>
 </div>
 
 @if(loading()){
@@ -16,7 +24,7 @@
   <app-character-card [character]="character" [priorityImage]="index < 4"></app-character-card>
 
   } @empty {
-  <p class="no-results" i18n="@@noResults">No hay resultados</p>
+  <p class="no-results" i18n="@@noResults">No encontramos ningún personaje con esos filtros</p>
   }
 </div>
 }
