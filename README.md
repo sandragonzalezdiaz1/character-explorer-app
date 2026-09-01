@@ -1,59 +1,150 @@
-# EjCharacterExplorer
+# Character Explorer App
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.5.
+A responsive Angular application to explore, search, filter, and save your favorite Rick and Morty characters.
 
-## Development server
+The project focuses on modern Angular development practices, reactive programming, API integration, state management, performance optimization, and internationalization.
 
-To start a local development server, run:
+## Description
+
+Character Explorer App is a responsive Angular application that consumes the [Rick and Morty API](https://rickandmortyapi.com/) to display information about characters from the series.
+
+Users can search characters by name, filter them by status, explore detailed character information, save favorites, and switch between light and dark themes.
+
+The application also preserves active search and filter parameters in the URL, allowing users to navigate between pages without losing their current search state.
+
+## 🖼️ Screenshots
+
+### Character Explorer
+
+![Character Explorer](docs/images/character-explorer.png)
+
+### Character Detail
+
+![Character Detail](docs/images/character-detail.png)
+
+### Favorites
+
+![Favorites](docs/images/favorites.png)
+
+### Dark Mode
+
+![Dark Mode](docs/images/dark-mode.png)
+
+## Features
+
+- Character list with infinite scroll.
+- Incremental API loading while scrolling.
+- Search characters by name.
+- Filter characters by status: alive, dead, unknown, or all.
+- Clear all active filters.
+- Character detail page.
+- Favorite characters saved persistently using `localStorage`.
+- Dedicated favorites page available at `/favorites`.
+- Image fallback when an avatar can't be loaded.
+- Light and dark theme support.
+- URL query parameters to preserve active filters and searches.
+- Spanish and English support using Angular i18n.
+- Responsive interface for different screen sizes.
+
+## Tech Stack
+
+- Angular
+- TypeScript
+- Angular Signals
+- RxJS
+- Angular Router
+- Angular i18n
+- CSS custom properties
+- Rick and Morty API
+- pnpm
+
+## Technical Highlights
+
+- State management using Angular Signals.
+- Reactive search with RxJS, `debounceTime`, and `switchMap`.
+- API response caching to reduce unnecessary requests.
+- Infinite scrolling with incremental data loading.
+- Optimized image loading with priority loading for initial characters.
+- Persistent favorites using `localStorage`.
+- URL query parameters to preserve filters and search state.
+- Internationalization with Angular i18n (Spanish and English)
+
+## Routes
+
+| Route | Description |
+| --- | --- |
+| `/` | Character explorer with search, filters, and infinite scroll |
+| `/character/:id` | Character detail page |
+| `/favorites` | Favorite characters page |
+
+## Getting Started
+
+### Prerequisites
+
+Make sure you have installed:
+
+- Node.js
+- pnpm
+- Angular CLI
+
+### Installation
+
+Clone the repository and install the project dependencies:
 
 ```bash
-ng serve
+pnpm install
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### Development Server
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Run the app in Spanish:
 
 ```bash
-ng generate component component-name
+pnpm start:es
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Run the app in English:
 
 ```bash
-ng generate --help
+pnpm start:en
 ```
 
-## Building
+Then open:
 
-To build the project run:
+```text
+http://localhost:4200/
+```
+
+## Build
+
+Build the project with:
 
 ```bash
-ng build
+pnpm build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+The build output will be generated in the `dist/` directory.
 
-## Running unit tests
+## Tests
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+Run the unit tests with:
 
 ```bash
-ng test
+pnpm test
 ```
 
-## Running end-to-end tests
+## API
 
-For end-to-end (e2e) testing, run:
+This project uses the public Rick and Morty API:
 
-```bash
-ng e2e
+```text
+https://rickandmortyapi.com/api/character
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+The API provides character information including name, status, species, origin, location, episodes, and images.
 
-## Additional Resources
+## Notes
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+When many character images are requested in a short period of time, the API or image server may temporarily return a `429 Too Many Requests` response.
+
+The application includes a fallback image mechanism so the interface remains stable when an avatar can't be loaded.

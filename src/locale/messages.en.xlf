@@ -105,10 +105,22 @@
           <context context-type="sourcefile">src/app/components/character-list/character-list.component.html</context>
           <context context-type="linenumber">36</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/favorite-list/favorite-list.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="clearFiltersButton" datatype="html">
+        <source>Limpiar filtros</source>
+        <target>Clear filters</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/character-list/character-list.component.html</context>
+          <context context-type="linenumber">5,13</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="noResults" datatype="html">
-        <source>No hay resultados</source>
-        <target>No results found</target>
+        <source>No encontramos ningún personaje con esos filtros</source>
+        <target>We could not find any characters with those filters</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/character-list/character-list.component.html</context>
           <context context-type="linenumber">19,24</context>
@@ -176,6 +188,54 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/status-filter/status-filter.component.html</context>
           <context context-type="linenumber">6,7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="favoritesTitle" datatype="html">
+        <source>Personajes favoritos</source>
+        <target>Favorite Characters</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/favorite-list/favorite-list.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="favoritesEmpty" datatype="html">
+        <source>Todavía no tienes personajes favorito</source>
+        <target>You don't have any favorite characters yet</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/favorite-list/favorite-list.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="favoritesBackToExplorer" datatype="html">
+        <source>Ir al explorador</source>
+        <target>Go to explorer</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/favorite-list/favorite-list.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="favoritesLoadError" datatype="html">
+        <source>No se pudieron cargar los favoritos</source>
+        <target>Favorites couldn't be loaded</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/favorite-list/favorite-list.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="navExplorer" datatype="html">
+        <source> Explorador </source>
+        <target>Explorer</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.html</context>
+          <context context-type="linenumber">2,4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="navFavorites" datatype="html">
+        <source> Favoritos </source>
+        <target>Favorites</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.html</context>
+          <context context-type="linenumber">5,7</context>
         </context-group>
       </trans-unit>
     </body>
