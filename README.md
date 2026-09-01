@@ -16,19 +16,19 @@ The application also preserves active search and filter parameters in the URL, a
 
 ### Character Explorer
 
-![Character Explorer](docs/images/character-explorer.png)
+![Character Explorer](docs/imgs/character-explorer.png)
 
 ### Character Detail
 
-![Character Detail](docs/images/character-detail.png)
+![Character Detail](docs/imgs/character-detail.png)
 
 ### Favorites
 
-![Favorites](docs/images/favorites.png)
+![Favorites](docs/imgs/favorites.png)
 
 ### Dark Mode
 
-![Dark Mode](docs/images/dark-mode.png)
+![Dark Mode](docs/imgs/dark-mode.png)
 
 ## Features
 
