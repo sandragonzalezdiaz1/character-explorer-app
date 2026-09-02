@@ -7,6 +7,7 @@
   justify-content: center;
   gap: 44px;
   padding: 40px 24px;
+  box-sizing: border-box;
 }
 
 /* Imagen del personaje */
@@ -36,7 +37,9 @@
 
 /* Tarjeta de información */
 .character-info {
-  width: 460px;
+  width: 100%;
+  max-width: 460px;
+  box-sizing: border-box;
   padding: 28px;
   background: linear-gradient(145deg, var(--card-background), var(--card-background-secondary));
   border: 2px solid var(--border-secondary);
@@ -170,4 +173,57 @@
   font-size: 1.5rem;
   color: #ff4d4d;
   font-weight: bold;
+}
+
+@media (max-width: 760px) {
+  .character-detail {
+    min-height: auto;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+    padding: 24px 0;
+  }
+
+  .character-detail img {
+    max-width: min(100%, 360px);
+    justify-self: center;
+    border-radius: 20px;
+    transform: none;
+  }
+
+  .character-detail img:hover {
+    transform: scale(1.02);
+  }
+
+  .character-info {
+    max-width: 100%;
+    padding: 22px;
+    border-radius: 18px;
+  }
+
+  .character-info h1 {
+    font-size: clamp(1.6rem, 9vw, 2.2rem);
+    line-height: 1.1;
+  }
+
+  .character-actions {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 420px) {
+  .character-info {
+    padding: 18px;
+  }
+
+  .character-info p {
+    font-size: 0.95rem;
+  }
+
+  .character-actions {
+    align-items: stretch;
+  }
+
+  .back-button {
+    flex: 1;
+  }
 }

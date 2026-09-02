@@ -23,7 +23,7 @@ export class CharacterCardComponent {
     const imgElement = event.target as HTMLImageElement;
 
     imgElement.onerror = null;
-    imgElement.src = '/images/character-placeholder.svg';
+    imgElement.src = 'images/character-placeholder.svg';
 
   } 
 
