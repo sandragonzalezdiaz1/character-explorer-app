@@ -40,6 +40,10 @@
           },
           "configurations": {
             "production": {
+              "localize": [
+                "es",
+                "en"
+              ],
               "budgets": [
                 {
                   "type": "initial",
